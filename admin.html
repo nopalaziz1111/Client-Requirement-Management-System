@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Client Requirement Management System</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Supabase CDN (Official JS Client) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+
+  <!-- AUTH / LOGIN VIEW (AD-01) -->
+  <div class="login-wrap" id="login-screen">
+    <div class="login-card">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="brand-icon" style="margin: 0 auto 1rem; width: 44px; height: 44px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: var(--navy-950);">Admin Portal Login</h2>
+        <p style="color: var(--navy-500); font-size: 0.875rem; margin-top: 0.25rem;">
+          Client Requirement Management System
+        </p>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group" style="margin-bottom: 1.15rem;">
+          <label class="form-label" for="login-email">Email Administrator</label>
+          <input type="email" id="login-email" class="form-control" placeholder="admin@clientrequirements.com" required value="admin@clientrequirements.com">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label class="form-label" for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required value="admin123">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-login-submit" style="width: 100%; padding: 0.75rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+          Masuk ke Dashboard
+        </button>
+
+        <div style="margin-top: 1.25rem; padding: 0.75rem; background: var(--navy-50); border: 1px dashed var(--navy-200); border-radius: var(--radius-md); font-size: 0.775rem; color: var(--navy-600); line-height: 1.5;">
+          <strong>💡 Kredensial Demo:</strong><br>
+          Email: <code>admin@clientrequirements.com</code><br>
+          Password: <code>admin123</code>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="index.html" style="font-size: 0.85rem; color: var(--accent); font-weight: 600;">
+            &larr; Kembali ke Formulir Client
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MAIN LAYOUT (AD-02) -->
+  <div class="admin-layout" id="dashboard-screen" style="display: none;">
+
+    <!-- Left Sidebar -->
+    <aside class="admin-sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon" style="background: #ffffff; color: var(--navy-950);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <div>
+          <strong style="font-size: 0.95rem; display: block;">ReqSystem Admin</strong>
+          <span style="font-size: 0.7rem; color: var(--navy-400);">Manajemen Kebutuhan</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="sidebar-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Daftar Pengajuan
+        </a>
+        <a href="#" class="sidebar-item" id="nav-btn-settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Koneksi Supabase
+        </a>
+        <a href="index.html" target="_blank" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Buka Form Klien
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button type="button" class="btn btn-sm btn-outline-primary" id="btn-logout" style="width: 100%; color: #fff; border-color: rgba(255,255,255,0.2);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Keluar (Logout)
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-page-title">
+          <h1>Dashboard Pengajuan Klien</h1>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <span id="backend-status-badge" class="status-pill Pending" style="cursor: pointer;" title="Klik untuk mengkonfigurasi Supabase">
+            ● Demo Mode
+          </span>
+          <button type="button" class="btn btn-sm btn-secondary" id="btn-refresh-data">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            Muat Ulang
+          </button>
+          <button type="button" class="btn btn-sm btn-primary" id="btn-export-csv">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Ekspor CSV
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Content View -->
+      <div class="admin-content">
+
+        <!-- STAT METRICS CARDS (AD-03, AD-04, AD-05) -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h4>Total Pengajuan</h4>
+              <div class="stat-number" id="stat-total">0</div>
+            </div>
+            <div class="stat-icon total">📂</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h4>Menunggu Ditinjau (Pending)</h4>
+              <div class="stat-number" id="stat-pending" style="color: var(--status-pending-text);">0</div>
+            </div>
+            <div class="stat-icon pending">⏳</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h4>Sedang Diproses</h4>
+              <div class="stat-number" id="stat-in-progress" style="color: var(--status-progress-text);">0</div>
+            </div>
+            <div class="stat-icon progress">⚡</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h4>Proyek Selesai</h4>
+              <div class="stat-number" id="stat-completed" style="color: var(--status-completed-text);">0</div>
+            </div>
+            <div class="stat-icon completed">✅</div>
+          </div>
+        </div>
+
+        <!-- SUBMISSIONS DATA TABLE & FILTERS (AD-06, AD-08, AD-09) -->
+        <div class="data-table-container">
+
+          <!-- Filter & Search Toolbar -->
+          <div class="table-toolbar">
+            <!-- Search Box (AD-08) -->
+            <div class="search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="filter-search" class="form-control" placeholder="Cari nama klien, email, PT...">
+            </div>
+
+            <!-- Filters (AD-09) -->
+            <div class="filter-group">
+              <select id="filter-website-type" class="form-control" style="width: auto;">
+                <option value="">Semua Jenis Website</option>
+                <option value="Company Profile">Company Profile</option>
+                <option value="E-Commerce">E-Commerce</option>
+                <option value="Education Website">Education Website</option>
+                <option value="Information System">Information System</option>
+                <option value="Portfolio Website">Portfolio Website</option>
+                <option value="Booking System">Booking System</option>
+                <option value="Blog / News">Blog / News</option>
+                <option value="Other">Lainnya</option>
+              </select>
+
+              <select id="filter-status" class="form-control" style="width: auto;">
+                <option value="">Semua Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Reviewing">Reviewing</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-filters">
+                Reset Filter
+              </button>
+            </div>
+          </div>
+
+          <!-- Table View (AD-06) -->
+          <div class="table-responsive">
+            <table class="custom-table" id="submissions-table">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Klien & Perusahaan</th>
+                  <th>Kontak</th>
+                  <th>Jenis Website</th>
+                  <th>Estimasi Budget</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="submissions-tbody">
+                <!-- Dynamically rendered rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div id="empty-state" style="display: none; padding: 3rem 1.5rem; text-align: center; color: var(--navy-400);">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔍</div>
+            <h3 style="color: var(--navy-800); font-size: 1.1rem; margin-bottom: 0.25rem;">Tidak Ada Data Pengajuan Ditemukan</h3>
+            <p style="font-size: 0.875rem;">Coba sesuaikan kata kunci pencarian atau reset filter di atas.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- DETAIL SUBMISSION MODAL (AD-07, AD-10) -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-client-name">Detail Kebutuhan Klien</h3>
+          <span id="modal-sub-id" style="font-size: 0.75rem; color: var(--navy-400); font-family: monospace;">-</span>
+        </div>
+        <button type="button" class="icon-btn" onclick="window.adminApp.closeDetailModal()">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body" id="modal-detail-content">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="modal-footer">
+        <div style="margin-right: auto; display: flex; align-items: center; gap: 0.6rem;">
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--navy-800);">Ubah Status:</label>
+          <select id="modal-update-status" class="form-control" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.85rem;">
+            <option value="Pending">Pending</option>
+            <option value="Reviewing">Reviewing</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button type="button" class="btn btn-sm btn-primary" id="btn-save-status">
+            Simpan Status
+          </button>
+        </div>
+
+        <button type="button" class="btn btn-secondary" onclick="window.adminApp.closeDetailModal()">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPABASE SETTINGS MODAL -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3>Pengaturan Database Supabase</h3>
+        <button type="button" class="icon-btn" onclick="window.adminApp.closeSettingsModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 0.875rem; color: var(--navy-600); margin-bottom: 1.25rem;">
+          Hubungkan aplikasi web ini dengan database Supabase proyek Anda untuk sinkronisasi PostgreSQL secara live. Jika dikosongkan, sistem tetap berjalan normal dalam mode local demo storage.
+        </p>
+
+        <form id="supabase-settings-form">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="setting-supabase-url">Supabase Project URL</label>
+            <input type="url" id="setting-supabase-url" class="form-control" placeholder="https://xyzcompany.supabase.co">
+            <span class="form-hint">Dapatkan dari Supabase Dashboard &gt; Project Settings &gt; API</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label" for="setting-supabase-key">Supabase Anon Key (Public)</label>
+            <input type="password" id="setting-supabase-key" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+            <span class="form-hint">Gunakan `anon` / `publishable` key (bukan service role key).</span>
+          </div>
+
+          <div style="background: var(--navy-50); padding: 0.9rem; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--navy-700); line-height: 1.5; margin-bottom: 1.25rem;">
+            💡 File SQL skema lengkap dan aturan RLS sudah siap di <code>schema.sql</code>. Anda cukup mengeksekusinya di <strong>SQL Editor</strong> dashboard Supabase Anda.
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <button type="button" class="btn btn-secondary" id="btn-reset-supabase">Gunakan Demo Mode</button>
+            <button type="submit" class="btn btn-primary">Simpan & Hubungkan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

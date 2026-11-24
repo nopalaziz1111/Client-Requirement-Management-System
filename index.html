@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Requirement Management System - Pengumpulan Kebutuhan Website</title>
+  <meta name="description" content="Formulir pengumpulan kebutuhan website terstruktur untuk calon client dan agency web development.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Supabase CDN (Official JS Client) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-wrap">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <span>ReqSystem</span>
+          <span class="brand-badge">Client Portal</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#hero">Beranda</a></li>
+          <li><a href="#form-container">Formulir Kebutuhan</a></li>
+          <li><a href="#features">Keunggulan</a></li>
+          <li>
+            <a href="admin.html" class="btn btn-sm btn-outline-primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              Admin Dashboard
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section (CL-01) -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>Client Requirement Management System v1.0</span>
+      </div>
+
+      <h1 class="hero-title">
+        Wujudkan Website Impian Anda dengan <br>
+        <span>Kebutuhan yang Terstruktur</span>
+      </h1>
+
+      <p class="hero-desc">
+        Kirimkan rincian kebutuhan proyek website Anda secara jelas dan lengkap. Formulir terpandu ini membantu kami memahami visi bisnis Anda, mempercepat perancangan fitur, dan memberikan estimasi terbaik.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#form-container" class="btn btn-primary" id="btn-start-form">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Mulai Isi Kebutuhan Website
+        </a>
+        <a href="admin.html" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            <polyline points="10 17 15 12 10 7"></polyline>
+            <line x1="15" y1="12" x2="3" y2="12"></line>
+          </svg>
+          Login Administrator
+        </a>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Penyimpanan Aman Supabase Cloud</span>
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>6 Bagian Terpandu & Validasi Realtime</span>
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Respons Cepat & Akurat dari Tim Dev</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Value Props / Features Highlight -->
+  <section class="container" id="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 14 14"></polyline>
+          </svg>
+        </div>
+        <h3>Hemat Waktu Diskusi</h3>
+        <p>Tidak perlu bolak-balik chat berkepanjangan. Semua detail penting tersusun rapi sejak langkah pertama.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3>Tidak Ada Fitur Terlewat</h3>
+        <p>Pilihan checklist fitur lengkap mulai dari autentikasi, pembayaran, katalog, hingga notifikasi WhatsApp.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h3>Estimasi Tepat Sasaran</h3>
+        <p>Bantu developer memberikan estimasi biaya dan waktu pengerjaan yang transparan dan realistis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Questionnaire Form (Section A - F + Review & Confirmation) -->
+  <section class="form-section" id="form-container">
+    <div class="container">
+      <div class="form-wrapper">
+
+        <!-- Stepper Indicator -->
+        <div class="stepper-header">
+          <div class="stepper-progress-wrap">
+            <div class="stepper-progress-bar-bg">
+              <div class="stepper-progress-fill" id="progress-bar"></div>
+            </div>
+          </div>
+
+          <ul class="stepper-steps" id="stepper-nav">
+            <li class="step-item active" data-step="1">
+              <span class="step-circle">1</span>
+              <span class="step-name">Client Info</span>
+            </li>
+            <li class="step-item" data-step="2">
+              <span class="step-circle">2</span>
+              <span class="step-name">Website</span>
+            </li>
+            <li class="step-item" data-step="3">
+              <span class="step-circle">3</span>
+              <span class="step-name">Fitur</span>
+            </li>
+            <li class="step-item" data-step="4">
+              <span class="step-circle">4</span>
+              <span class="step-name">Pengguna & Konten</span>
+            </li>
+            <li class="step-item" data-step="5">
+              <span class="step-circle">5</span>
+              <span class="step-name">Desain</span>
+            </li>
+            <li class="step-item" data-step="6">
+              <span class="step-circle">6</span>
+              <span class="step-name">Budget & Waktu</span>
+            </li>
+            <li class="step-item" data-step="7">
+              <span class="step-circle">7</span>
+              <span class="step-name">Review</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Form Body Container -->
+        <form id="requirement-form" novalidate>
+
+          <!-- STEP 1: SECTION A - Client Information (CL-02) -->
+          <div class="step-content active" id="step-1">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section A</span>
+              <h2>Informasi Klien & Bisnis</h2>
+              <p>Mohon informasikan kontak dan profil usaha Anda agar tim kami dapat menghubungi Anda kembali.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="full_name">
+                  Nama Lengkap <span class="req">*</span>
+                </label>
+                <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                <span class="error-text">Nama lengkap wajib diisi</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="company_name">
+                  Nama Perusahaan / Bisnis
+                </label>
+                <input type="text" id="company_name" name="company_name" class="form-control" placeholder="Contoh: PT Sinergi Abadi atau Brand Anda">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">
+                  Alamat Email <span class="req">*</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="budi@example.com" required>
+                <span class="error-text">Alamat email valid wajib diisi</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">
+                  Nomor WhatsApp / Telepon <span class="req">*</span>
+                </label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Contoh: 081234567890" required>
+                <span class="error-text">Nomor telepon / WhatsApp wajib diisi</span>
+              </div>
+
+              <div class="form-group col-full">
+                <label class="form-label" for="business_field">
+                  Bidang Usaha / Industri
+                </label>
+                <input type="text" id="business_field" name="business_field" class="form-control" placeholder="Contoh: F&B, Fashion, Logistik, Jasa Konsultan, Edukasi, Klinik Medis">
+                <span class="form-hint">Membantu kami memahami konteks operasional bisnis Anda.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: SECTION B - Website Requirements (CL-03, CL-04, CL-05) -->
+          <div class="step-content" id="step-2">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section B</span>
+              <h2>Kebutuhan & Kategori Website</h2>
+              <p>Tentukan kategori utama dan tujuan strategis pembuatan website Anda.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Pilih Jenis Website <span class="req">*</span>
+              </label>
+              
+              <div class="options-cards-grid" id="website-type-grid">
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Company Profile" required checked>
+                  <div class="option-card-icon">🏢</div>
+                  <div class="option-card-title">Company Profile</div>
+                  <div class="option-card-sub">Profil perusahaan, layanan, portofolio & kontak resmi.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="E-Commerce">
+                  <div class="option-card-icon">🛍️</div>
+                  <div class="option-card-title">E-Commerce</div>
+                  <div class="option-card-sub">Toko online, katalog produk, keranjang belanja & payment.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Education Website">
+                  <div class="option-card-icon">🎓</div>
+                  <div class="option-card-title">Education Website</div>
+                  <div class="option-card-sub">Website sekolah, universitas, kursus online, PPDB.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Information System">
+                  <div class="option-card-icon">💻</div>
+                  <div class="option-card-title">Information System</div>
+                  <div class="option-card-sub">Sistem informasi internal, ERP, CRM, operasional bisnis.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Portfolio Website">
+                  <div class="option-card-icon">🎨</div>
+                  <div class="option-card-title">Portfolio Website</div>
+                  <div class="option-card-sub">Showcase karya pribadi/agensi, resume interaktif.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Booking System">
+                  <div class="option-card-icon">📅</div>
+                  <div class="option-card-title">Booking System</div>
+                  <div class="option-card-sub">Reservasi jadwal konsultasi, hotel, klinik, atau event.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Blog / News">
+                  <div class="option-card-icon">📰</div>
+                  <div class="option-card-title">Blog / News</div>
+                  <div class="option-card-sub">Media berita, artikel berkala, majalah digital.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="website_type" value="Other">
+                  <div class="option-card-icon">✨</div>
+                  <div class="option-card-title">Lainnya (Custom)</div>
+                  <div class="option-card-sub">Kebutuhan spesifik yang belum tercakup di atas.</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.5rem;">
+              <label class="form-label" for="website_goal">
+                Tujuan Utama Pembuatan Website <span class="req">*</span>
+              </label>
+              <input type="text" id="website_goal" name="website_goal" class="form-control" placeholder="Contoh: Meningkatkan penjualan online, branding korporat, atau efisiensi pendaftaran" required>
+              <span class="error-text">Tujuan website wajib diisi</span>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.25rem;">
+              <label class="form-label" for="project_description">
+                Deskripsi Gambaran Umum Proyek <span class="req">*</span>
+              </label>
+              <textarea id="project_description" name="project_description" class="form-control" rows="4" placeholder="Ceritakan alur yang Anda inginkan, fitur krusial, atau masalah yang ingin diselesaikan melalui website ini..." required></textarea>
+              <span class="error-text">Deskripsi proyek wajib diisi</span>
+            </div>
+          </div>
+
+          <!-- STEP 3: SECTION C - Feature Requirements (CL-06) -->
+          <div class="step-content" id="step-3">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section C</span>
+              <h2>Pemilihan Fitur yang Dibutuhkan</h2>
+              <p>Centang semua fitur yang Anda butuhkan dalam website. Anda juga dapat menambahkan fitur kustom.</p>
+            </div>
+
+            <div class="features-chip-grid" id="features-list">
+              <!-- Feature options as interactive checkable chips -->
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Login dan registrasi">
+                <span class="chip-text">🔐 Login dan Registrasi</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Dashboard administrator">
+                <span class="chip-text">📊 Dashboard Administrator</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="CRUD data">
+                <span class="chip-text">📝 Manajemen Data (CRUD)</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Search dan filter">
+                <span class="chip-text">🔍 Pencarian & Filter Canggih</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Reporting dan PDF export">
+                <span class="chip-text">📄 Reporting & Ekspor PDF</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Online payment">
+                <span class="chip-text">💳 Online Payment Gateway</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Shopping cart">
+                <span class="chip-text">🛒 Keranjang Belanja</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="WhatsApp integration">
+                <span class="chip-text">💬 Integrasi WhatsApp Otomatis</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Contact form">
+                <span class="chip-text">✉️ Formulir Kontak Masuk</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="File upload">
+                <span class="chip-text">📎 Upload File / Dokumen</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Notification">
+                <span class="chip-text">🔔 Notifikasi Sistem / Email</span>
+              </label>
+
+              <label class="chip-checkbox">
+                <input type="checkbox" name="required_features" value="Product management">
+                <span class="chip-text">📦 Manajemen Katalog Produk</span>
+              </label>
+            </div>
+
+            <!-- Custom Feature Input Box -->
+            <div style="margin-top: 1.5rem; background: var(--navy-50); padding: 1.25rem; border-radius: var(--radius-md); border: 1px dashed var(--navy-300);">
+              <label class="form-label" for="custom_feature_input">
+                Ada fitur khusus lainnya yang belum tertera di atas?
+              </label>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                <input type="text" id="custom_feature_input" class="form-control" placeholder="Ketik nama fitur kustom, lalu klik Tambah">
+                <button type="button" class="btn btn-secondary" id="btn-add-feature">Tambah</button>
+              </div>
+              <div id="custom-features-badge-container" class="tags-list" style="margin-top: 0.75rem;"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: SECTION D - User & Content (CL-07, CL-08) -->
+          <div class="step-content" id="step-4">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section D</span>
+              <h2>Target Pengguna & Kesiapan Konten</h2>
+              <p>Tentukan siapa yang akan menggunakan website dan sejauh mana materi teks/gambar sudah disiapkan.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Target Pengguna Website (Bisa pilih lebih dari satu)
+              </label>
+              <div class="features-chip-grid">
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Masyarakat Umum / Publik">
+                  <span class="chip-text">👥 Masyarakat Umum / Publik</span>
+                </label>
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Pelanggan Retail (B2C)">
+                  <span class="chip-text">🛍️ Pelanggan Retail (B2C)</span>
+                </label>
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Klien Bisnis / Korporasi (B2B)">
+                  <span class="chip-text">🏢 Klien Bisnis / Mitra (B2B)</span>
+                </label>
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Internal Karyawan / Tim">
+                  <span class="chip-text">💼 Karyawan & Internal Tim</span>
+                </label>
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Pelajar / Mahasiswa">
+                  <span class="chip-text">🎓 Pelajar / Siswa</span>
+                </label>
+                <label class="chip-checkbox">
+                  <input type="checkbox" name="target_users" value="Komunitas Khusus">
+                  <span class="chip-text">🌟 Komunitas Khusus</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.5rem;">
+              <label class="form-label" for="content_status">
+                Kesiapan Materi Konten (Teks, Gambar, Video) <span class="req">*</span>
+              </label>
+              <select id="content_status" name="content_status" class="form-control" required>
+                <option value="">-- Pilih Status Konten --</option>
+                <option value="Sudah siap lengkap (Teks dan aset gambar sudah tersedia)">Sudah siap lengkap (Teks & foto/aset sudah siap diunggah)</option>
+                <option value="Sebagian siap (Sebagian sudah ada, sebagian butuh penyempurnaan)">Sebagian siap (Masih dalam proses pengumpulan)</option>
+                <option value="Belum ada / Butuh bantuan copywriting & materi">Belum ada sama sekali (Butuh bantuan pembuatan teks & aset grafis)</option>
+              </select>
+              <span class="error-text">Status kesiapan konten wajib dipilih</span>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.25rem;">
+              <label class="form-label" for="cms_need">
+                Apakah Anda membutuhkan fitur untuk mengelola konten sendiri (CMS)?
+              </label>
+              <select id="cms_need" name="cms_need" class="form-control">
+                <option value="Ya, kami ingin bisa menambah/mengedit artikel dan foto sendiri">Ya, kami ingin bisa mengedit teks/gambar secara mandiri kapan saja</option>
+                <option value="Cukup website statis yang dikelola oleh tim developer">Tidak perlu, cukup website statis yang dirawat oleh tim developer</option>
+                <option value="Perlu konsultasi lebih lanjut">Belum yakin, butuh rekomendasi terbaik</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- STEP 5: SECTION E - Design Preferences (CL-09) -->
+          <div class="step-content" id="step-5">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section E</span>
+              <h2>Preferensi Desain & Tampilan Visual</h2>
+              <p>Pilih kesan visual yang ingin Anda tampilkan kepada calon pengunjung website.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                Gaya Desain yang Diinginkan <span class="req">*</span>
+              </label>
+              <div class="options-cards-grid" id="design-style-grid">
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Modern minimalis" checked required>
+                  <div class="option-card-icon">⚡</div>
+                  <div class="option-card-title">Modern Minimalis</div>
+                  <div class="option-card-sub">Bersih, rapi, dominasi ruang putih, fokus pada konten utama.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Corporate">
+                  <div class="option-card-icon">👔</div>
+                  <div class="option-card-title">Corporate</div>
+                  <div class="option-card-sub">Formal, kredibel, terpercaya, cocok untuk industri korporasi.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Elegant">
+                  <div class="option-card-icon">💎</div>
+                  <div class="option-card-title">Elegant & Premium</div>
+                  <div class="option-card-sub">Mewah, eksklusif, tipografi serif modern, aksen halus.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Colorful">
+                  <div class="option-card-icon">🎨</div>
+                  <div class="option-card-title">Colorful & Vibrant</div>
+                  <div class="option-card-sub">Penuh warna segar, dinamis, ceria, cocok untuk anak muda/edukasi.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Simple">
+                  <div class="option-card-icon">🌱</div>
+                  <div class="option-card-title">Simple & Direct</div>
+                  <div class="option-card-sub">Sangat sederhana, navigasi to-the-point, sangat ringan.</div>
+                </label>
+
+                <label class="option-card">
+                  <input type="radio" name="design_style" value="Custom design">
+                  <div class="option-card-icon">🪄</div>
+                  <div class="option-card-title">Custom Design</div>
+                  <div class="option-card-sub">Desain khusus sesuai pedoman brandbook spesifik Anda.</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid" style="margin-top: 1.5rem;">
+              <div class="form-group col-full">
+                <label class="form-label" for="reference_url">
+                  URL Referensi Website yang Anda Sukai (Jika ada)
+                </label>
+                <input type="text" id="reference_url" name="reference_url" class="form-control" placeholder="Contoh: https://apple.com, https://stripe.com, https://tokopedia.com">
+                <span class="form-hint">Pisahkan dengan koma jika memiliki lebih dari satu link referensi.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="color_palette">
+                  Warna Identitas / Warna Pilihan Brand
+                </label>
+                <input type="text" id="color_palette" name="color_palette" class="form-control" placeholder="Contoh: Navy & Emas, Biru Toska, atau Hex Code">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="design_notes">
+                  Catatan Tambahan untuk Desain
+                </label>
+                <input type="text" id="design_notes" name="design_notes" class="form-control" placeholder="Contoh: Jangan terlalu banyak animasi, ingin dark mode, dll.">
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 6: SECTION F - Budget & Timeline (CL-10, CL-11, CL-12) -->
+          <div class="step-content" id="step-6">
+            <div class="step-title-wrap">
+              <span class="step-badge">Section F</span>
+              <h2>Estimasi Budget & Target Waktu</h2>
+              <p>Informasikan kisaran anggaran dan target tenggat waktu peluncuran website Anda.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="budget">
+                  Estimasi Budget Investasi <span class="req">*</span>
+                </label>
+                <select id="budget" name="budget" class="form-control" required>
+                  <option value="">-- Pilih Kisaran Budget --</option>
+                  <option value="< Rp 5.000.000">&lt; Rp 5.000.000 (Paket Starter / Landing Page)</option>
+                  <option value="Rp 5.000.000 - Rp 15.000.000">Rp 5.000.000 - Rp 15.000.000 (Standard Proyek)</option>
+                  <option value="Rp 15.000.000 - Rp 30.000.000">Rp 15.000.000 - Rp 30.000.000 (Advanced / E-Commerce)</option>
+                  <option value="Rp 30.000.000 - Rp 60.000.000">Rp 30.000.000 - Rp 60.000.000 (Enterprise / Complex System)</option>
+                  <option value="> Rp 60.000.000">&gt; Rp 60.000.000 (Kustom Skala Besar)</option>
+                  <option value="Fleksibel / Menyesuaikan Rekomendasi">Fleksibel / Menyesuaikan Rekomendasi Tim Developer</option>
+                </select>
+                <span class="error-text">Estimasi budget wajib dipilih</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="deadline">
+                  Target Deadline Penyelesaian <span class="req">*</span>
+                </label>
+                <select id="deadline" name="deadline" class="form-control" required>
+                  <option value="">-- Pilih Target Waktu --</option>
+                  <option value="Sangat Segera (< 2 Minggu)">Sangat Segera (&lt; 2 Minggu)</option>
+                  <option value="1 Bulan">1 Bulan</option>
+                  <option value="1 - 2 Bulan">1 - 2 Bulan</option>
+                  <option value="2 - 3 Bulan">2 - 3 Bulan</option>
+                  <option value="Fleksibel / Kapan Saja">Fleksibel (Mengutamakan kualitas)</option>
+                </select>
+                <span class="error-text">Target deadline wajib dipilih</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="domain_status">
+                  Kepemilikan Domain & Hosting <span class="req">*</span>
+                </label>
+                <select id="domain_status" name="domain_status" class="form-control" required>
+                  <option value="">-- Pilih Status Domain & Hosting --</option>
+                  <option value="Sudah punya domain & hosting">Sudah punya domain & hosting aktif</option>
+                  <option value="Baru punya nama domain, butuh hosting">Baru punya nama domain, butuh server hosting</option>
+                  <option value="Belum punya sama sekali (butuh bantuan setup)">Belum punya sama sekali (butuh rekomendasi & bantuan setup dari tim)</option>
+                </select>
+                <span class="error-text">Status domain dan hosting wajib dipilih</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="domain_name_plan">
+                  Nama Domain yang Diinginkan (Jika sudah ada rencana)
+                </label>
+                <input type="text" id="domain_name_plan" name="domain_name_plan" class="form-control" placeholder="Contoh: www.bisnisanda.com / .id">
+              </div>
+
+              <div class="form-group col-full">
+                <label class="form-label" for="additional_notes">
+                  Catatan Tambahan / Permintaan Khusus
+                </label>
+                <textarea id="additional_notes" name="additional_notes" class="form-control" rows="3" placeholder="Tuliskan hal lain yang menurut Anda perlu diketahui oleh tim kami..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 7: REVIEW & CONFIRMATION -->
+          <div class="step-content" id="step-7">
+            <div class="step-title-wrap">
+              <span class="step-badge">Konfirmasi Akhir</span>
+              <h2>Periksa Kembali Ringkasan Kebutuhan</h2>
+              <p>Pastikan seluruh informasi yang Anda isi sudah akurat sebelum dikirimkan ke tim developer kami.</p>
+            </div>
+
+            <!-- Review Summary Card -->
+            <div class="review-summary-card">
+              <div class="review-section-header">
+                <span>Informasi Klien</span>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="window.formApp.goToStep(1)">Ubah</button>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Nama Klien</div>
+                <div class="review-value" id="rev-full-name">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Perusahaan / Brand</div>
+                <div class="review-value" id="rev-company">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Kontak</div>
+                <div class="review-value" id="rev-contact">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Bidang Usaha</div>
+                <div class="review-value" id="rev-business">-</div>
+              </div>
+            </div>
+
+            <div class="review-summary-card">
+              <div class="review-section-header">
+                <span>Kebutuhan Website & Fitur</span>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="window.formApp.goToStep(2)">Ubah</button>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Jenis Website</div>
+                <div class="review-value" id="rev-website-type">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Tujuan Proyek</div>
+                <div class="review-value" id="rev-website-goal">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Deskripsi</div>
+                <div class="review-value" id="rev-project-desc" style="white-space: pre-line;">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Daftar Fitur</div>
+                <div class="review-value">
+                  <div class="tags-list" id="rev-features-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-summary-card">
+              <div class="review-section-header">
+                <span>Desain, Budget & Timeline</span>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="window.formApp.goToStep(5)">Ubah</button>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Gaya Desain</div>
+                <div class="review-value" id="rev-design-style">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Referensi Desain</div>
+                <div class="review-value" id="rev-reference-url">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Estimasi Budget</div>
+                <div class="review-value" id="rev-budget">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Target Deadline</div>
+                <div class="review-value" id="rev-deadline">-</div>
+              </div>
+              <div class="review-grid">
+                <div class="review-key">Domain & Hosting</div>
+                <div class="review-value" id="rev-domain">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stepper Navigation Footer -->
+          <div class="stepper-footer" id="stepper-controls">
+            <button type="button" class="btn btn-secondary" id="btn-prev" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              Sebelumnya
+            </button>
+
+            <button type="button" class="btn btn-primary" id="btn-next">
+              Selanjutnya
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+
+            <button type="submit" class="btn btn-accent" id="btn-submit" style="display: none;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Kirimkan Kebutuhan Website
+            </button>
+          </div>
+
+        </form>
+
+        <!-- SUCCESS SCREEN (CL-14) -->
+        <div class="success-screen" id="success-screen" style="display: none;">
+          <div class="success-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+
+          <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--navy-950); margin-bottom: 0.5rem;">
+            Pengajuan Berhasil Terkirim!
+          </h2>
+          <p style="color: var(--navy-500); max-width: 540px; margin: 0 auto; line-height: 1.6;">
+            Terima kasih <strong id="success-client-name">Klien</strong>. Rincian kebutuhan website Anda telah berhasil kami simpan ke dalam sistem kami.
+          </p>
+
+          <div class="submission-ref-box">
+            ID Referensi Pengajuan: <br>
+            <strong id="success-submission-id" style="color: var(--accent); font-size: 1.05rem;">-</strong>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem; max-width: 500px; margin: 0 auto 2rem; text-align: left; font-size: 0.875rem;">
+            <div style="font-weight: 700; color: var(--navy-900); margin-bottom: 0.5rem;">Langkah Selanjutnya:</div>
+            <ol style="padding-left: 1.25rem; line-height: 1.7; color: var(--navy-600);">
+              <li>Tim teknis kami sedang mempelajari rincian dokumen kebutuhan Anda.</li>
+              <li>Dalam waktu maksimal <strong>1x24 jam kerja</strong>, kami akan menghubungi nomor WhatsApp/Email Anda dengan ringkasan estimasi dan jadwal temu teknis.</li>
+              <li>Status pengajuan ini dapat dipantau langsung oleh administrator.</li>
+            </ol>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary" id="btn-fill-again">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              Kirim Pengajuan Baru
+            </button>
+            <a href="admin.html" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Buka Portal Administrator
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer style="background: #ffffff; border-top: 1px solid var(--border-light); padding: 2.5rem 0; margin-top: auto; font-size: 0.875rem; color: var(--navy-500);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div class="brand-icon" style="width: 26px; height: 26px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <strong>Client Requirement Management System</strong> &bull; Versi 1.0
+      </div>
+      <div>
+        Clean, Modern Minimalist Web App with Supabase Backend &bull; &copy; 2026 All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
